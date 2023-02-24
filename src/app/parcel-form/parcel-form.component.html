@@ -1,0 +1,27 @@
+<form [formGroup]="parcelForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Name:</label>
+      <input type="text" formControlName="name">
+      <div *ngIf="parcelForm.get('name').invalid && (parcelForm.get('name').dirty || parcelForm.get('name').touched)">
+        <div *ngIf="parcelForm.get('name').errors.required">Name is required</div>
+      </div>
+    </div>
+    <div>
+      <label>Email:</label>
+      <input type="email" formControlName="email">
+      <div *ngIf="parcelForm.get('email').invalid && (parcelForm.get('email').dirty || parcelForm.get('email').touched)">
+        <div *ngIf="parcelForm.get('email').errors.required">Email is required</div>
+        <div *ngIf="parcelForm.get('email').errors.email">Invalid email format</div>
+        <div *ngIf="parcelForm.get('email').errors.pattern">Email address must be from @travel.com domain</div>
+      </div>
+    </div>
+    <div>
+      <label>Destination:</label>
+      <input type="text" formControlName="destination">
+      <div *ngIf="parcelForm.get('destination').invalid && (parcelForm.get('destination').dirty || parcelForm.get('destination').touched)">
+        <div *ngIf="parcelForm.get('destination').errors.required">Destination is required</div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="!parcelForm.valid">Submit</button>
+  </form>
+  
